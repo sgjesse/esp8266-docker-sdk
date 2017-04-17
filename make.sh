@@ -16,6 +16,8 @@ if [ $(docker ps --quiet --all --filter name=^/${CONTAINER_NAME}$) ]; then
   docker container rm $CONTAINER_NAME > /dev/null
 fi
 
+APP="${1:-1}"
+
 docker run \
   --tty \
   --interactive \
@@ -26,5 +28,5 @@ docker run \
   --workdir "$CONTAINER_HOME/share/test" \
   --rm \
   sgjesse/esp-open-sdk \
-  make BOOT=new APP=1 SPI_SPEED=2 SPI_MODE=2 SPI_SIZE_MAP=6
+  make BOOT=new APP=$APP SPI_SPEED=2 SPI_MODE=2 SPI_SIZE_MAP=6
 
