@@ -30,7 +30,8 @@ RUN apt-get update && apt-get install -y \
         sudo
 
 # Set the timezone.
-RUN echo "Europe/Copenhagen" > /etc/timezone && \
+TIMEZONE=Europe/Copenhagen
+RUN sudo ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime && \
     dpkg-reconfigure -f noninteractive tzdata
 
 ENV USER esp8266
